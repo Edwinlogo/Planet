@@ -41,6 +41,16 @@
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
+		.logo img {
+		height: 50px;
+		width: auto;
+		}
+		
+		.logo2 img {
+		height: 280px;
+		width: auto;
+		}
+		
         .nav {
             display: flex;
             justify-content: space-between;
@@ -442,7 +452,9 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <div class="logo">PLANET</div>
+            <div class="logo">
+      <img src="https://planetconstrucciones.dcedwin.com/img/Logo.png" alt="Planet Construcciones">
+    </div>
             <ul class="nav-menu">
                 <li><a href="#inicio" class="nav-link">Inicio</a></li>
                 <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
@@ -455,7 +467,7 @@
     <section id="inicio" class="hero">
         <!-- Video de fondo (reemplaza con tu video) -->
         <video class="hero-video" autoplay muted loop playsinline>
-            <source src="tu-video-construccion.mp4" type="video/mp4">
+            <source src="https://planetconstrucciones.dcedwin.com/img/video.mp4" type="video/mp4">
             <source src="tu-video-construccion.webm" type="video/webm">
             <!-- Fallback para navegadores que no soporten video -->
             Tu navegador no soporta el elemento de video.
@@ -465,7 +477,12 @@
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
-            <h1>PLANET CONSTRUCCIONES</h1>
+            <h1>
+		
+		<div class="logo2">
+      <img src="https://planetconstrucciones.dcedwin.com/img/Logo.png" alt="Planet Construcciones">
+    </div>			
+			</h1>
             <p>Transformamos espacios y construimos sueños con excelencia, compromiso y profesionalismo en cada proyecto</p>
             <button class="cta-button" onclick="document.getElementById('contacto').scrollIntoView({behavior: 'smooth'})">
                 Solicita tu Cotización
