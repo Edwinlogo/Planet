@@ -468,7 +468,7 @@
         <!-- Video de fondo (reemplaza con tu video) -->
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="https://planetconstrucciones.dcedwin.com/img/video.mp4" type="video/mp4">
-            <source src="tu-video-construccion.webm" type="video/webm">
+            <source src="https://planetconstrucciones.dcedwin.com/img/video.webm" type="video/webm">
             <!-- Fallback para navegadores que no soporten video -->
             Tu navegador no soporta el elemento de video.
         </video>
@@ -505,7 +505,7 @@
     <!-- Services Section -->
     <section id="servicios" class="section section-services">
         <div class="container">
-            <h2 class="section-title animate-on-scroll" style="color: #333;">Nuestros Servicios</h2>
+            <h2 class="section-title animate-on-scroll" style="color: #333;">Servicios Destacados</h2>
             <div class="services-grid">
                 <div class="service-card animate-on-scroll" onclick="openGallery('urbanismo')">
                     <div class="service-icon">🏗️</div>
@@ -546,14 +546,14 @@
             <h2 class="section-title animate-on-scroll">Misión & Visión</h2>
             <div class="mv-grid">
                 <div class="mv-card animate-on-scroll">
-                    <h3 style="color: var(--orange-primary); margin-bottom: 1rem; font-size: 1.5rem;">🎯 Nuestra Misión</h3>
+                    <h3 style="color: var(--orange-primary); margin-bottom: 1rem; font-size: 1.5rem;">Nuestra Misión</h3>
                     <p>Somos una empresa dedicada a brindar servicios de construcción, remodelación y mantenimiento,
                     con nuestra experiencia y compromiso contribuimos al éxito de los proyectos de nuestros clientes.
                     Contamos con un equipo humano comprometido y consciente que los servicios prestados deben ser
                     óptimos y funcionales.</p>
                 </div>
                 <div class="mv-card animate-on-scroll">
-                    <h3 style="color: var(--orange-primary); margin-bottom: 1rem; font-size: 1.5rem;">🚀 Nuestra Visión</h3>
+                    <h3 style="color: var(--orange-primary); margin-bottom: 1rem; font-size: 1.5rem;">Nuestra Visión</h3>
                     <p>Para el año 2030 seremos una organización líder en el campo de arquitectura e ingeniería civil,
                     preservando el medio ambiente. Proporcionando oportunidades de desarrollo integral, caracterizados
                     por una sólida cultura de servicio, basada en el compromiso de nuestra gente, con calidad,
@@ -590,14 +590,18 @@
                         <div class="contact-icon">📞</div>
                         <div>
                             <h4>Teléfono</h4>
-                            <p>301 727 1720</p>
+                            <p>
+							<a href="tel:3017271720">301 727 1720</a>
+							</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">✉️</div>
                         <div>
                             <h4>Email</h4>
-                            <p>planetzamora25@gmail.com</p>
+                            <p>
+							<a href="mailto:planetzamora25@gmail.com">planetzamora25@gmail.com</a>
+							</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -607,13 +611,25 @@
                             <p>Ibagué, Tolima, Colombia</p>
                         </div>
                     </div>
-                    <div class="contact-item">
+                    
+					<div class="contact-item">
                         <div class="contact-icon">🏢</div>
                         <div>
                             <h4>NIT</h4>
                             <p>901.093.382-5</p>
                         </div>
-                    </div>
+					</div>
+					
+					<div class="contact-item">
+                        <div class="contact-icon">📝</div>
+                        <div>
+                            <h4>DOCS</h4>
+                            <p>
+							<a href="https://drive.google.com/file/d/1wmCf9cLA43Yx0fKI-dLcnba4eXln7qo8/view?usp=sharing">
+							Documentos para registro como su proveedor
+							</a></p>
+                        </div>
+					</div>
                 </div>
             </div>
         </div>
@@ -678,37 +694,44 @@
         // Galería de imágenes para servicios
         const serviceImages = {
             urbanismo: [
-                'imagen1-urbanismo.jpg',
-                'imagen2-urbanismo.jpg',
-                'imagen3-urbanismo.jpg',
-                'imagen4-urbanismo.jpg'
+                'https://s.yimg.com/ny/api/res/1.2/..JgfCdm507iRUjPB2ItIg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTYzOTtjZj13ZWJw/https://media.zenfs.com/en/edinburgh_live_607/79d237bb069d9d69440cc88e79a57309',
+                'https://i.ytimg.com/vi/dXDbgCiKLyA/maxresdefault.jpg',
+                'https://www.elespectador.com/resizer/v2/GEISCRPSZFCFBNW2GGLP5POSSE.jpeg?auth=5cdee28dfb6edc1ecec14ed0e3f4f365a90fab86fbfa9fc0d2d25a971c7bb43c&width=1096&height=730&smart=true&quality=60',
+                'img/imagen4-urbanismo.jpg',
+				'img/imagen6-urbanismo.jpg',
+				'img/imagen5-urbanismo.jpg'
             ],
             enchapes: [
-                'imagen1-enchapes.jpg',
-                'imagen2-enchapes.jpg',
-                'imagen3-enchapes.jpg',
-                'imagen4-enchapes.jpg'
+                'https://m.media-amazon.com/images/I/81TJNXeaZqL.jpg',
+                'img/imagen2-enchapes.jpg',
+                'img/imagen3-enchapes.jpg',
+                'img/imagen4-enchapes.jpg',
+				'img/imagen5-enchapes.jpg',
+				'img/imagen6-enchapes.jpg'
             ],
             resanes: [
-                'imagen1-resanes.jpg',
-                'imagen2-resanes.jpg',
-                'imagen3-resanes.jpg'
+                'https://victoryepes.blogs.upv.es/files/2024/10/Foto-Molins-Reparacion.jpg',
+                'https://deprolsafety.com/cdn/shop/products/salesalesalesalesalesale_8.png?v=1652287590',
+                'https://sanchezgronskirecubrimientos.com/wp-content/uploads/2022/06/IMG_6578-1140x600.jpeg'
             ],
             aseo: [
-                'imagen1-aseo.jpg',
-                'imagen2-aseo.jpg',
-                'imagen3-aseo.jpg'
+                'img/imagen1-aseo.jpg',
+                'img/imagen2-aseo.jpg',
+                'https://www.sicsas.com.co/wp-content/uploads/2022/05/aseo-fino-para-entrega-de-obras.jpeg'
             ],
             remodelaciones: [
-                'imagen1-remodelaciones.jpg',
-                'imagen2-remodelaciones.jpg',
-                'imagen3-remodelaciones.jpg',
-                'imagen4-remodelaciones.jpg'
+                'img/imagen1-remodelaciones.jpg',
+                'img/imagen2-remodelaciones.jpg',
+                'img/imagen3-remodelaciones.jpg',
+                'img/imagen4-remodelaciones.jpg'
             ],
             mamposteria: [
-                'imagen1-mamposteria.jpg',
-                'imagen2-mamposteria.jpg',
-                'imagen3-mamposteria.jpg'
+                'img/imagen1-mamposteria.jpg',
+                'img/imagen2-mamposteria.jpg',
+                'img/imagen3-mamposteria.jpg',
+				'img/imagen4-mamposteria.jpg',
+				'img/imagen5-mamposteria.jpg',
+				'img/imagen6-mamposteria.jpg'
             ]
         };
         const serviceTitles = {
@@ -736,18 +759,9 @@
                     const div = document.createElement('div');
                     div.className = 'gallery-item';
 
-                    // Placeholder mientras no tengas las imágenes
-                    div.innerHTML = `
-                        <div style="text-align: center; padding: 20px;">
-                            <p>${imageSrc}</p>
-                            <small>Agrega tus fotos aquí</small>
-                        </div>
-                    `;
-
-                    // Cuando tengas las imágenes, descomenta esto y comenta lo de arriba:
-                    /*
+                   
                     div.innerHTML = `<img src="${imageSrc}" alt="Proyecto ${service}" onerror="this.parentElement.innerHTML='<p>Imagen no encontrada</p>'">`;
-                    */
+                   
 
                     grid.appendChild(div);
                 });
