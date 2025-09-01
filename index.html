@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planet Construcciones y Acabados S.A.S.</title>
+    <style>
+        :root {
+            --orange-primary: #FF6B35;
+            --orange-secondary: #FF8C42;
+            --gray-dark: #34495E; /* Gris oscuro */
+            --gray-medium: #BDC3C7; /* Gris medio */
+            --gray-light: #ECF0F1; /* Gris claro */
+            --white: #FFFFFF;
+            --black: #1A1A1A;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--white);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header con efecto glassmorphism */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--orange-primary);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-link {
+            color: var(--gray-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, var(--orange-primary), var(--orange-secondary));
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        /* Hero Section con video de fondo */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .hero-content {
+            z-index: 2;
+            animation: slideInUp 1s ease-out;
+            color: var(--white);
+        }
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255, 107, 53, 0.3); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255, 107, 53, 0.6); }
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0 auto 2rem auto;
+            max-width: 600px;
+        }
+        .cta-button {
+            background: linear-gradient(45deg, var(--orange-primary), var(--orange-secondary));
+            color: var(--white);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
+        }
+        /* Secciones con diseño moderno */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        .section-about {
+            background: var(--gray-light);
+            color: var(--gray-dark);
+        }
+        .section-services {
+            background: var(--white);
+            position: relative;
+        }
+        .section-services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(180deg, var(--gray-light) 0%, var(--white) 100%);
+        }
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--orange-primary), var(--orange-secondary));
+            border-radius: 2px;
+        }
+        /* Grid de servicios con efectos hover */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(44, 62, 80, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 53, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        .service-card:hover::before {
+            left: 100%;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(44, 62, 80, 0.2);
+            border-color: var(--orange-primary);
+        }
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--orange-primary), var(--orange-secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+        /* Sección de misión y visión */
+        .mission-vision {
+            background: var(--gray-dark);
+            color: var(--white);
+        }
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        .mv-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        /* Sección de contacto con formulario interactivo */
+        .contact {
+            background: var(--gray-light);
+            color: var(--gray-dark);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        .contact-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(44, 62, 80, 0.1);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: var(--white);
+            color: var(--gray-dark);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--orange-primary);
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.2);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #aaa;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(44, 62, 80, 0.1);
+        }
+        .contact-item:hover {
+            background: rgba(255, 107, 53, 0.1);
+            transform: translateX(10px);
+        }
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--orange-primary), var(--orange-secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+        /* Footer */
+        .footer {
+            background: var(--gray-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .nav-menu { display: none; }
+            .mv-grid, .contact-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+        /* Animaciones de scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Modal para galería de imágenes */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 1000px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .close {
+            color: var(--gray-medium);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+        .close:hover {
+            color: var(--orange-primary);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            height: 200px;
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-medium);
+            font-style: italic;
+            border: 2px solid transparent;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+            border-color: var(--orange-primary);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">PLANET</div>
+            <ul class="nav-menu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <!-- Video de fondo (reemplaza con tu video) -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="tu-video-construccion.mp4" type="video/mp4">
+            <source src="tu-video-construccion.webm" type="video/webm">
+            <!-- Fallback para navegadores que no soporten video -->
+            Tu navegador no soporta el elemento de video.
+        </video>
+
+        <!-- Overlay para mejorar legibilidad del texto -->
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1>PLANET CONSTRUCCIONES</h1>
+            <p>Transformamos espacios y construimos sueños con excelencia, compromiso y profesionalismo en cada proyecto</p>
+            <button class="cta-button" onclick="document.getElementById('contacto').scrollIntoView({behavior: 'smooth'})">
+                Solicita tu Cotización
+            </button>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="nosotros" class="section section-about">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Acerca de Nosotros</h2>
+            <div class="animate-on-scroll">
+                <p style="font-size: 1.2rem; text-align: center; margin-bottom: 3rem; opacity: 0.9;">
+                    Con sede en Ibagué, Tolima, Planet Construcciones y Acabados S.A.S. es una empresa comprometida
+                    con la transformación de espacios y la construcción de sueños. Contamos con un excelente equipo
+                    de trabajo especializado en obra blanca y gris.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section id="servicios" class="section section-services">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll" style="color: #333;">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll" onclick="openGallery('urbanismo')">
+                    <div class="service-icon">🏗️</div>
+                    <h3>Urbanismo</h3>
+                    <p>Desarrollo completo de proyectos urbanísticos con los más altos estándares de calidad y cumplimiento normativo.</p>
+                </div>
+                <div class="service-card animate-on-scroll" onclick="openGallery('enchapes')">
+                    <div class="service-icon">🎨</div>
+                    <h3>Enchapes</h3>
+                    <p>Instalación profesional de enchapes cerámicos, porcelánico y piedra natural con acabados impecables.</p>
+                </div>
+                <div class="service-card animate-on-scroll" onclick="openGallery('resanes')">
+                    <div class="service-icon">🔧</div>
+                    <h3>Resanes</h3>
+                    <p>Reparación y restauración de superficies con técnicas especializadas para resultados duraderos.</p>
+                </div>
+                <div class="service-card animate-on-scroll" onclick="openGallery('aseo')">
+                    <div class="service-icon">✨</div>
+                    <h3>Aseo Especializado</h3>
+                    <p>Servicios de limpieza fina y gruesa para entrega perfecta de proyectos constructivos.</p>
+                </div>
+                <div class="service-card animate-on-scroll" onclick="openGallery('remodelaciones')">
+                    <div class="service-icon">🏠</div>
+                    <h3>Remodelaciones</h3>
+                    <p>Transformación completa de espacios residenciales y comerciales con diseño innovador.</p>
+                </div>
+                <div class="service-card animate-on-scroll" onclick="openGallery('mamposteria')">
+                    <div class="service-icon">🧱</div>
+                    <h3>Mampostería</h3>
+                    <p>Construcción de estructuras sólidas con técnicas tradicionales y materiales de primera calidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Mission & Vision -->
+    <section class="section mission-vision">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Misión & Visión</h2>
+            <div class="mv-grid">
+                <div class="mv-card animate-on-scroll">
+                    <h3 style="color: var(--orange-primary); margin-bottom: 1rem; font-size: 1.5rem;">🎯 Nuestra Misión</h3>
+                    <p>Somos una empresa dedicada a brindar servicios de construcción, remodelación y mantenimiento,
+                    con nuestra experiencia y compromiso contribuimos al éxito de los proyectos de nuestros clientes.
+                    Contamos con un equipo humano comprometido y consciente que los servicios prestados deben ser
+                    óptimos y funcionales.</p>
+                </div>
+                <div class="mv-card animate-on-scroll">
+                    <h3 style="color: var(--orange-primary); margin-bottom: 1rem; font-size: 1.5rem;">🚀 Nuestra Visión</h3>
+                    <p>Para el año 2030 seremos una organización líder en el campo de arquitectura e ingeniería civil,
+                    preservando el medio ambiente. Proporcionando oportunidades de desarrollo integral, caracterizados
+                    por una sólida cultura de servicio, basada en el compromiso de nuestra gente, con calidad,
+                    excelencia y eficacia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contacto" class="section contact">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Contáctanos</h2>
+            <div class="contact-grid">
+                <div class="contact-form animate-on-scroll">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--orange-primary);">Solicita tu Cotización</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Correo electrónico" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Teléfono">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Describe tu proyecto" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%;">Enviar Mensaje</button>
+                    </form>
+                </div>
+                <div class="contact-info animate-on-scroll">
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>301 727 1720</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>planetzamora25@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>Ibagué, Tolima, Colombia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🏢</div>
+                        <div>
+                            <h4>NIT</h4>
+                            <p>901.093.382-5</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Planet Construcciones y Acabados S.A.S. | Todos los derechos reservados</p>
+            <p style="margin-top: 0.5rem; opacity: 0.7;">Representante Legal: Ricardo Zamora</p>
+        </div>
+    </footer>
+    <!-- Modal para galería de imágenes -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeGallery()">&times;</span>
+            <h2 id="galleryTitle">Galería de Proyectos</h2>
+            <div id="galleryGrid" class="gallery-grid">
+                <!-- Las imágenes se cargarán aquí dinámicamente -->
+            </div>
+        </div>
+    </div>
+    <script>
+        // Smooth scrolling para navegación
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        // Animaciones al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+        // Header transparency effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.9)';
+            }
+        });
+        // Form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+        });
+        // Galería de imágenes para servicios
+        const serviceImages = {
+            urbanismo: [
+                'imagen1-urbanismo.jpg',
+                'imagen2-urbanismo.jpg',
+                'imagen3-urbanismo.jpg',
+                'imagen4-urbanismo.jpg'
+            ],
+            enchapes: [
+                'imagen1-enchapes.jpg',
+                'imagen2-enchapes.jpg',
+                'imagen3-enchapes.jpg',
+                'imagen4-enchapes.jpg'
+            ],
+            resanes: [
+                'imagen1-resanes.jpg',
+                'imagen2-resanes.jpg',
+                'imagen3-resanes.jpg'
+            ],
+            aseo: [
+                'imagen1-aseo.jpg',
+                'imagen2-aseo.jpg',
+                'imagen3-aseo.jpg'
+            ],
+            remodelaciones: [
+                'imagen1-remodelaciones.jpg',
+                'imagen2-remodelaciones.jpg',
+                'imagen3-remodelaciones.jpg',
+                'imagen4-remodelaciones.jpg'
+            ],
+            mamposteria: [
+                'imagen1-mamposteria.jpg',
+                'imagen2-mamposteria.jpg',
+                'imagen3-mamposteria.jpg'
+            ]
+        };
+        const serviceTitles = {
+            urbanismo: 'Proyectos de Urbanismo',
+            enchapes: 'Trabajos de Enchapes',
+            resanes: 'Servicios de Resanes',
+            aseo: 'Aseo Especializado',
+            remodelaciones: 'Proyectos de Remodelación',
+            mamposteria: 'Trabajos de Mampostería'
+        };
+        function openGallery(service) {
+            const modal = document.getElementById('galleryModal');
+            const title = document.getElementById('galleryTitle');
+            const grid = document.getElementById('galleryGrid');
+
+            title.textContent = serviceTitles[service];
+            grid.innerHTML = '';
+
+            const images = serviceImages[service] || [];
+
+            if (images.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; color: #666; grid-column: 1/-1;">Próximamente agregaremos imágenes de nuestros proyectos de ' + serviceTitles[service].toLowerCase() + '.</p>';
+            } else {
+                images.forEach(imageSrc => {
+                    const div = document.createElement('div');
+                    div.className = 'gallery-item';
+
+                    // Placeholder mientras no tengas las imágenes
+                    div.innerHTML = `
+                        <div style="text-align: center; padding: 20px;">
+                            <p>${imageSrc}</p>
+                            <small>Agrega tus fotos aquí</small>
+                        </div>
+                    `;
+
+                    // Cuando tengas las imágenes, descomenta esto y comenta lo de arriba:
+                    /*
+                    div.innerHTML = `<img src="${imageSrc}" alt="Proyecto ${service}" onerror="this.parentElement.innerHTML='<p>Imagen no encontrada</p>'">`;
+                    */
+
+                    grid.appendChild(div);
+                });
+            }
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeGallery() {
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        // Cerrar modal al hacer clic fuera de él
+        window.onclick = function(event) {
+            const modal = document.getElementById('galleryModal');
+            if (event.target === modal) {
+                closeGallery();
+            }
+        };
+    </script>
+</body>
+</html>
